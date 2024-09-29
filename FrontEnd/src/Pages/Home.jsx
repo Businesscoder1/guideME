@@ -1,8 +1,7 @@
 // Icons Import
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
-
-
+import IconCloud from "../components/ui/icon-cloud";
 // Component Imports
 import Footer from "../Components/Common/Footer";
 // import ReviewSlider from "../components/Common/ReviewSlider"
@@ -15,6 +14,38 @@ import LearningLanguageSection from "../Components/core/HomePage/LearningLanguag
 import TimelineSection from "../Components/core/HomePage/Timeline"
 
 function Home() {
+  const iconSlugs=[
+    "typescript",
+  "javascript",
+  "dart",
+  "java",
+  "react",
+  "flutter",
+  "android",
+  "html5",
+  "css3",
+  "nodedotjs",
+  "express",
+  "nextdotjs",
+  "prisma",
+  "amazonaws",
+  "postgresql",
+  "firebase",
+  "nginx",
+  "vercel",
+  "testinglibrary",
+  "jest",
+  "cypress",
+  "docker",
+  "git",
+  "jira",
+  "github",
+  "gitlab",
+  "visualstudiocode",
+  "androidstudio",
+  "sonarqube",
+  "figma",
+  ]
   return (
     <div className="bg-gray-900">
       {/* Section 1 */}
@@ -42,7 +73,8 @@ function Home() {
           </CTAButton>
           
         </div>
-
+        
+        <IconCloud iconSlugs={iconSlugs} />
        
 
         {/* Code Section 1  */}
@@ -150,7 +182,7 @@ function Home() {
             <TimelineSection />
 
             {/* Learning Language Section - Section 3 */}
-            <LearningLanguageSection />
+            {/* <LearningLanguageSection /> */}
           </div>
         </div>
 

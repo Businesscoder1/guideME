@@ -3,7 +3,7 @@ import { BiArrowBack } from "react-icons/bi"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 
-import { getPasswordResetToken } from "../services/operations/authAPI"
+// import { getPasswordResetToken } from "../services/operations/authAPI"
 
 function ForgotPassword() {
   const [email, setEmail] = useState("")
@@ -13,11 +13,11 @@ function ForgotPassword() {
 
   const handleOnSubmit = (e) => {
     e.preventDefault()
-    dispatch(getPasswordResetToken(email, setEmailSent))
+    // dispatch(getPasswordResetToken(email, setEmailSent))
   }
 
   return (
-    <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
+    <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center bg-gray-900 text-white">
       {loading ? (
         <div className="spinner"></div>
       ) : (
@@ -43,20 +43,20 @@ function ForgotPassword() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter email address"
-                  className="form-style w-full"
+                  className="form-style w-full rounded-md h-10 text-black p-3"
                 />
               </label>
             )}
             <button
               type="submit"
-              className="mt-6 w-full rounded-[8px] bg-yellow-50 py-[12px] px-[12px] font-medium text-richblack-900"
+              className="mt-6 w-full rounded-[8px] bg-yellow-50 py-[12px] px-[12px] font-medium text-gray-800 hover:bg-yellow-400"
             >
               {!emailSent ? "Sumbit" : "Resend Email"}
             </button>
           </form>
           <div className="mt-6 flex items-center justify-between">
             <Link to="/login">
-              <p className="flex items-center gap-x-2 text-richblack-5">
+              <p className="flex items-center gap-x-2 hover:text-red-400">
                 <BiArrowBack /> Back To Login
               </p>
             </Link>

@@ -12,6 +12,7 @@ import { Toaster, toast } from 'react-hot-toast';
 import Dashboard from './Pages/Dashboard';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
+import ForgotPassword from './Pages/ForgotPassword';
 const App = () => {
     return (
       <div className="app">
@@ -31,6 +32,7 @@ const App = () => {
           />
 
           <Route path='signup' element={<Signup/>}/>
+          <Route path='forget-password' element={<ForgotPassword/>}/>
 
         </Routes>
         

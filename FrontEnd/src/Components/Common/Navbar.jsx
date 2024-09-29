@@ -15,19 +15,17 @@ import Logo from "../../assets/Logo/logo.jpg";
 function Navbar() {
   const { token } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.profile);
-  // const { totalItems } = useSelector((state) => state.cart);
   const location = useLocation();
 
   const [subLinks, setSubLinks] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // For mobile menu toggle
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     (async () => {
       setLoading(true);
       try {
-        // const res = await apiConnector("GET", categories.CATEGORIES_API)
-        // setSubLinks(res.data.data)
+        // Fetch categories if needed
       } catch (error) {
         console.log("Could not fetch Categories.", error);
       }
@@ -40,7 +38,7 @@ function Navbar() {
   };
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen); // Toggles the mobile menu
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
@@ -50,13 +48,11 @@ function Navbar() {
       } transition-all duration-200`}
     >
       <div className="flex w-screen h-20 max-w-maxContent text-white font-extrabold bg-gray-900 items-center justify-between px-4">
-        {/* Logo */}
         <Link to="/" className="flex items-center">
           <img src={Logo} alt="Logo" className="w-10 h-12 rounded-full" loading="lazy" />
           <div className="mt-2 ml-3 text-2xl">Guide ME</div>
         </Link>
         
-        {/* Navigation links for desktop */}
         <nav className="hidden md:block">
           <ul className="flex gap-x-6 text-richblack-25">
             {NavbarLinks.map((link, index) => (
@@ -80,10 +76,7 @@ function Navbar() {
                           ?.filter((subLink) => subLink?.courses?.length > 0)
                           ?.map((subLink, i) => (
                             <Link
-                              to={`/catalog/${subLink.name
-                                .split(" ")
-                                .join("-")
-                                .toLowerCase()}`}
+                              to={`/catalog/${subLink.name.split(" ").join("-").toLowerCase()}`}
                               className="rounded-lg bg-transparent py-4 pl-4 hover:bg-richblack-50"
                               key={i}
                             >
@@ -97,13 +90,11 @@ function Navbar() {
                   </div>
                 ) : (
                   <Link to={link?.path}>
-                    <p
-                      className={`${
+                    <p className={`${
                         matchRoute(link?.path)
                           ? "text-yellow-100"
                           : "text-gray-300"
-                      }`}
-                    >
+                      }`}>
                       {link.title}
                     </p>
                   </Link>
@@ -113,17 +104,17 @@ function Navbar() {
           </ul>
         </nav>
 
-        {/* Login / Signup / Dashboard */}
+        {/* Login / Signup Buttons always visible */}
         <div className="hidden items-center gap-x-4 md:flex">
           {token === null ? (
             <>
               <Link to="/login">
-                <button className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100">
+                <button className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-4 py-2 text-richblack-100 text-sm md:text-base">
                   Log in
                 </button>
               </Link>
               <Link to="/signup">
-                <button className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100">
+                <button className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-4 py-2 text-richblack-100 text-sm md:text-base">
                   Sign up
                 </button>
               </Link>
@@ -137,7 +128,7 @@ function Navbar() {
         </div>
 
         {/* Mobile menu toggle */}
-        <button className="mr-4 md:hidden" onClick={toggleMobileMenu}>
+        <button className="md:hidden" onClick={toggleMobileMenu}>
           {isMobileMenuOpen ? (
             <AiOutlineClose fontSize={24} fill="#AFB2BF" />
           ) : (
@@ -151,38 +142,17 @@ function Navbar() {
             <ul className="flex flex-col gap-y-4">
               {NavbarLinks.map((link, index) => (
                 <li key={index}>
-                  <Link to={link?.path}>
-                    <p
-                      className={`${
+                  <Link to={link?.path} onClick={() => setIsMobileMenuOpen(false)}>
+                    <p className={`${
                         matchRoute(link?.path)
                           ? "text-yellow-500"
                           : "text-richblack-25"
-                      }`}
-                    >
+                      }`}>
                       {link.title}
                     </p>
                   </Link>
                 </li>
               ))}
-              {token === null ? (
-                <>
-                  <Link to="/login">
-                    <button className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100 w-full">
-                      Log in
-                    </button>
-                  </Link>
-                  <Link to="/signup">
-                    <button className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100 w-full">
-                      Sign up
-                    </button>
-                  </Link>
-                </>
-              ) : (
-                <>
-                  {/* Profile Dropdown in Mobile Menu */}
-                  {/* {token !== null && <ProfileDropdown />} */}
-                </>
-              )}
             </ul>
           </div>
         )}
