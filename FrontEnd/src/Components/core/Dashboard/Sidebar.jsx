@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 
 import { sidebarLinks } from "../../../data/dashboard-links"
 // import { logout } from "../../../services/operations/authAPI"
-// import ConfirmationModal from "../../Common/ConfirmationModal"
+import ConfirmationModal from "../../Common/ConfirmationModal"
 import SidebarLink from "./SidebarLink"
 
 export default function Sidebar() {
@@ -50,7 +50,7 @@ export default function Sidebar() {
                 text2: "You will be logged out of your account.",
                 btn1Text: "Logout",
                 btn2Text: "Cancel",
-                // btn1Handler: () => dispatch(logout(navigate)),
+                btn1Handler: () => dispatch(logout(navigate)),
                 btn2Handler: () => setConfirmationModal(null),
               })
             }
@@ -63,7 +63,7 @@ export default function Sidebar() {
           </button>
         </div>
       </div>
-      {/* {confirmationModal && <ConfirmationModal modalData={confirmationModal} />} */}
+      {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
     </>
   )
 }

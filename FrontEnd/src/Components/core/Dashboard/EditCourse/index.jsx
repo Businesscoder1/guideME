@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-
-import {
-  fetchCourseDetails,
-  getFullDetailsOfCourse,
-} from "../../../../services/operations/courseDetailsAPI"
+import React from "react"
+// import {
+//   fetchCourseDetails,
+//   getFullDetailsOfCourse,
+// } from "../../../../services/operations/courseDetailsAPI"
 import { setCourse, setEditCourse } from "../../../../slices/courseSlice"
 import RenderSteps from "../AddCourse/RenderSteps"
 

@@ -10,12 +10,12 @@ import { HiClock } from "react-icons/hi"
 import { RiDeleteBin6Line } from "react-icons/ri"
 import { useNavigate } from "react-router-dom"
 
-import { formatDate } from "../../../../services/formatDate"
-import {
-  deleteCourse,
-  fetchInstructorCourses,
-} from "../../../../services/operations/courseDetailsAPI"
-import { COURSE_STATUS } from "../../../../utils/constants"
+// import { formatDate } from "../../../../services/formatDate"
+// import {
+//   deleteCourse,
+//   fetchInstructorCourses,
+// } from "../../../../services/operations/courseDetailsAPI"
+// import { COURSE_STATUS } from "../../../../utils/constants"
 import ConfirmationModal from "../../../Common/ConfirmationModal"
 
 export default function CoursesTable({ courses, setCourses }) {
@@ -28,8 +28,8 @@ export default function CoursesTable({ courses, setCourses }) {
 
   const handleCourseDelete = async (courseId) => {
     setLoading(true)
-    await deleteCourse({ courseId: courseId }, token)
-    const result = await fetchInstructorCourses(token)
+    // await deleteCourse({ courseId: courseId }, token)
+    // const result = await fetchInstructorCourses(token)
     if (result) {
       setCourses(result)
     }
@@ -92,9 +92,9 @@ export default function CoursesTable({ courses, setCourses }) {
                         : course.courseDescription}
                     </p>
                     <p className="text-[12px] text-white">
-                      Created: {formatDate(course.createdAt)}
+                      {/* Created: {formatDate(course.createdAt)} */}
                     </p>
-                    {course.status === COURSE_STATUS.DRAFT ? (
+                    {/* {course.status === COURSE_STATUS.DRAFT ? (
                       <p className="flex w-fit flex-row items-center gap-2 rounded-full bg-richblack-700 px-2 py-[2px] text-[12px] font-medium text-pink-100">
                         <HiClock size={14} />
                         Drafted
@@ -106,7 +106,7 @@ export default function CoursesTable({ courses, setCourses }) {
                         </div>
                         Published
                       </p>
-                    )}
+                    )} */}
                   </div>
                 </Td>
                 <Td className="text-sm font-medium text-richblack-100">

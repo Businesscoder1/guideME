@@ -4,7 +4,7 @@ import { BiDotsVerticalRounded } from "react-icons/bi"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
-import { getUserEnrolledCourses } from "../../../services/operations/profileAPI"
+// import { getUserEnrolledCourses } from "../../../services/operations/profileAPI"
 
 export default function EnrolledCourses() {
   const { token } = useSelector((state) => state.auth)
@@ -15,7 +15,7 @@ export default function EnrolledCourses() {
   useEffect(() => {
     ;(async () => {
       try {
-        const res = await getUserEnrolledCourses(token) // Getting all the published and the drafted courses
+        // const res = await getUserEnrolledCourses(token) // Getting all the published and the drafted courses
 
         // Filtering the published course out
         const filterPublishCourse = res.filter((ele) => ele.status !== "Draft")

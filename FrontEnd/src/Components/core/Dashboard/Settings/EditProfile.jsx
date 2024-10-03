@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
-import { updateProfile } from "../../../../services/operations/SettingsAPI"
+// import { updateProfile } from "../../../../services/operations/SettingsAPI"
 import IconBtn from "../../../Common/IconBtn"
 
 const genders = ["Male", "Female", "Non-Binary", "Prefer not to say", "Other"]
@@ -22,13 +22,13 @@ export default function EditProfile() {
   const submitProfileForm = async (data) => {
     // console.log("Form Data - ", data)
     try {
-      dispatch(updateProfile(token, data))
+      // dispatch(updateProfile(token, data))
     } catch (error) {
       console.log("ERROR MESSAGE - ", error.message)
     }
   }
   return (
-    <>
+    <div className="bg-gray-900 text-white">
       <form onSubmit={handleSubmit(submitProfileForm)}>
         {/* Profile Information */}
         <div className="my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
@@ -193,6 +193,6 @@ export default function EditProfile() {
           <IconBtn type="submit" text="Save" />
         </div>
       </form>
-    </>
+    </div>
   )
 }

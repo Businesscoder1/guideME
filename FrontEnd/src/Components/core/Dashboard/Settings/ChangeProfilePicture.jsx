@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { FiUpload } from "react-icons/fi"
 import { useDispatch, useSelector } from "react-redux"
 
-import { updateDisplayPicture } from "../../../../services/operations/SettingsAPI"
+// import { updateDisplayPicture } from "../../../../services/operations/SettingsAPI"
 import IconBtn from "../../../Common/IconBtn"
 
 export default function ChangeProfilePicture() {
@@ -44,9 +44,9 @@ export default function ChangeProfilePicture() {
       const formData = new FormData()
       formData.append("displayPicture", imageFile)
       // console.log("formdata", formData)
-      dispatch(updateDisplayPicture(token, formData)).then(() => {
-        setLoading(false)
-      })
+      // dispatch(updateDisplayPicture(token, formData)).then(() => {
+      //   setLoading(false)
+      // })
     } catch (error) {
       console.log("ERROR MESSAGE - ", error.message)
     }
@@ -58,8 +58,8 @@ export default function ChangeProfilePicture() {
     }
   }, [imageFile])
   return (
-    <>
-      <div className="flex items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12 text-richblack-5">
+    <div className="bg-gray-900 text-white">
+      <div className="flex items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12 ">
         <div className="flex items-center gap-x-4">
           <img
             src={previewSource || user?.image}
@@ -95,6 +95,6 @@ export default function ChangeProfilePicture() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }

@@ -30,8 +30,7 @@ function LoginForm() {
   };
 
   return (
-    <div className="flex   pt-10  text-black"> {/* Centering container */}
-      <NeonGradientCard className=" w-96 md:w-[500px] lg:w-[700px] " borderSize={4} borderRadius={20}>
+    <div className="flex   pt-10  text-white "> {/* Centering container */}
         <form onSubmit={handleOnSubmit} className="flex flex-col gap-y-4">
           <label className="w-full">
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
@@ -44,7 +43,7 @@ function LoginForm() {
               value={email}
               onChange={handleOnChange}
               placeholder="Enter email address here"
-              className="form-style w-full rounded-md h-10 text-black p-3"
+              className="form-style w-80 rounded-md h-10 text-black p-3"
             />
           </label>
           <label className="relative">
@@ -83,7 +82,7 @@ function LoginForm() {
             Sign In
           </button>
         </form>
-      </NeonGradientCard>
+      
     </div>
   );
 }

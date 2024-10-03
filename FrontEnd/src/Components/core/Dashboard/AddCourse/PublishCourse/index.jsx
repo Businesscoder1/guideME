@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
-import { editCourseDetails } from "../../../../../services/operations/courseDetailsAPI"
+// import { editCourseDetails } from "../../../../../services/operations/courseDetailsAPI"
 import { resetCourseState, setStep } from "../../../../../slices/courseSlice"
-import { COURSE_STATUS } from "../../../../../utils/constants"
+// import { COURSE_STATUS } from "../../../../../utils/constants"
 import IconBtn from "../../../../Common/IconBtn"
 
 export default function PublishCourse() {
@@ -34,11 +34,12 @@ export default function PublishCourse() {
 
   const handleCoursePublish = async () => {
     // check if form has been updated or not
-    if (
-      (course?.status === COURSE_STATUS.PUBLISHED &&
-        getValues("public") === true) ||
-      (course?.status === COURSE_STATUS.DRAFT && getValues("public") === false)
-    ) {
+    // if (
+    //   (course?.status === COURSE_STATUS.PUBLISHED &&
+    //     getValues("public") === true) ||
+    //   (course?.status === COURSE_STATUS.DRAFT && getValues("public") === false)
+    // )
+     {
       // form has not been updated
       // no need to make api call
       goToCourses()
@@ -51,7 +52,7 @@ export default function PublishCourse() {
       : COURSE_STATUS.DRAFT
     formData.append("status", courseStatus)
     setLoading(true)
-    const result = await editCourseDetails(formData, token)
+    // const result = await editCourseDetails(formData, token)
     if (result) {
       goToCourses()
     }

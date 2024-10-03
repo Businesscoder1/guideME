@@ -12,7 +12,7 @@ const InputBox = ({
 }) => {
   return (
     <div className="mb-4">
-      <label className="block text-gray-700 text-sm font-semibold mb-2">
+      <label className="block text-gray-100 text-sm font-semibold mb-2">
         {label}
       </label>
       <input
@@ -33,12 +33,15 @@ const InputBox = ({
           } else {
             onChange(newValue); // For other types, just update the value
           }
+          
         }}
         placeholder={placeholder}  // Placeholder will only show when value is empty
         step={step}
         min={min}
         max={max}
-        className={`w-full px-4 py-2 border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
+        className={`px-4  py-2 border-gray-400 bg-gray-500 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-400 ${
+          type === 'email' ? 'w-full' : 'w-80' // Adjust width for email
+        }`}
       />
     </div>
   );

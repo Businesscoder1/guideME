@@ -6,13 +6,12 @@ import { useNavigate } from "react-router-dom"
 import { NeonGradientCard } from "../../../components/ui/neon-gradient-card"
 // import { sendOtp } from "../../../services/operations/authAPI"
 import { setSignupData } from "../../../slices/authSlice"
-// import { ACCOUNT_TYPE } from "../../../utils/constants"
-// import Tab from "../../Common/Tab"
 
 function SignupForm() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  // Initial form state
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -24,26 +23,24 @@ function SignupForm() {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
-  // State for password validation and strength
+  // State for password validation, strength, and form validity
   const [passwordError, setPasswordError] = useState("")
-  const [passwordStrength, setPasswordStrength] = useState("")
+  const [passwordStrength, setPasswordStrength] = useState(0)
+  const [isFormValid, setIsFormValid] = useState(false)
 
   const { firstName, lastName, email, password, confirmPassword } = formData
 
-  // Password strength checker
+  // Password strength checker, returning a strength level (0 to 4)
   const checkPasswordStrength = (password) => {
-    if (password.length < 6) {
-      return "Weak"
-    } else if (password.length >= 6 && /[A-Z]/.test(password) && /\d/.test(password)) {
-      return "Good"
-    } else if (password.length >= 8 && /[A-Z]/.test(password) && /\d/.test(password) && /[^A-Za-z0-9]/.test(password)) {
-      return "Strong"
-    } else {
-      return "Weak"
-    }
+    let strength = 0
+    if (password.length >= 6) strength++
+    if (/[A-Z]/.test(password)) strength++
+    if (/\d/.test(password)) strength++
+    if (/[^A-Za-z0-9]/.test(password)) strength++
+    return strength
   }
 
-  // Handle input fields, when some value changes
+  // Handle input fields, updating state and validation in real-time
   const handleOnChange = (e) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -56,62 +53,73 @@ function SignupForm() {
       setPasswordStrength(strength)
     }
 
-    // Dynamically check if passwords match
-    if (e.target.name === "confirmPassword" || e.target.name === "password") {
-      if (e.target.name === "password" && e.target.value !== confirmPassword) {
-        setPasswordError("Passwords do not match")
-      } else if (e.target.name === "confirmPassword" && e.target.value !== password) {
+    // Check password match only after confirmPassword input
+    if (e.target.name === "confirmPassword") {
+      if (e.target.value !== password) {
         setPasswordError("Passwords do not match")
       } else {
         setPasswordError("") // Clear error if they match
       }
     }
+
+    // Check if form is valid when all fields are filled
+    validateForm()
   }
 
-  // Handle Form Submission
+  // Validate if all fields are filled and passwords match
+  const validateForm = () => {
+    if (
+      firstName &&
+      lastName &&
+      email &&
+      password &&
+      confirmPassword &&
+      password === confirmPassword &&
+      passwordStrength > 1 // Ensure password is not weak
+    ) {
+      setIsFormValid(true)
+    } else {
+      setIsFormValid(false)
+    }
+  }
+
+  // Handle form submission
   const handleOnSubmit = (e) => {
     e.preventDefault()
 
-    // Ensure passwords match
-    if (password !== confirmPassword) {
-      toast.error("Passwords Do Not Match")
-      return
+    // If form is valid, proceed with signup
+    if (isFormValid) {
+      // Prepare signup data
+      const signupData = {
+        ...formData,
+      }
+
+      // Setting signup data to state for future use after OTP verification
+      dispatch(setSignupData(signupData))
+      // dispatch(sendOtp(formData.email, navigate))
+
+      // Reset form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      })
+    } else {
+      toast.error("Please fill all required fields and ensure passwords match.")
     }
+  }
 
-    // Check if password is strong enough
-    if (passwordStrength === "Weak") {
-      toast.error("Password is too weak")
-      return
-    }
-
-    // Prepare signup data
-    const signupData = {
-      ...formData,
-      // accountType,
-    }
-
-    // Setting signup data to state for future use after OTP verification
-    dispatch(setSignupData(signupData))
-    // dispatch(sendOtp(formData.email, navigate))
-
-    // Reset form
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    })
-    // setAccountType(ACCOUNT_TYPE.STUDENT)
+  // Navigate to verify email page
+  const verifyEmail = () => {
+    navigate("/verify-email")
   }
 
   return (
     <div className="pt-10 pr-300 ">
-      {/* Tab */}
-      {/* <Tab tabData={tabData} field={accountType} setField={setAccountType} /> */}
-      <NeonGradientCard className=" w-96 md:w-[500px] lg:w-[700px] " borderSize={4} borderRadius={20}>
       {/* Form */}
-      <form onSubmit={handleOnSubmit} className="flex  text-black justify-center align-middle w-full flex-col gap-y-4">
+      <form onSubmit={handleOnSubmit} className="flex  text-white justify-center align-middle w-full flex-col gap-y-4">
         <div className="flex gap-x-4">
           <label>
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
@@ -142,7 +150,7 @@ function SignupForm() {
             />
           </label>
         </div>
-        
+
         <label className="w-full">
           <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
             Email Address <sup className="text-pink-200">*</sup>
@@ -157,7 +165,7 @@ function SignupForm() {
             className="form-style w-80 rounded-md h-10 text-black p-3"
           />
         </label>
-        
+
         <div className="flex gap-x-4">
           <label className="relative">
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
@@ -182,12 +190,19 @@ function SignupForm() {
                 <AiOutlineEye fontSize={24} fill="#AFB2BF" />
               )}
             </span>
-            {/* Display password strength */}
-            <p className={`mt-1 text-sm ${passwordStrength === "Weak" ? "text-red-500" : passwordStrength === "Good" ? "text-yellow-500" : "text-green-500"}`}>
-              {passwordStrength && `Password strength: ${passwordStrength}`}
-            </p>
+            {/* Password Strength Indicator */}
+            <div className="flex gap-1 mt-2">
+              {Array.from({ length: 4 }, (_, i) => (
+                <div
+                  key={i}
+                  className={`h-1 w-full ${
+                    i < passwordStrength ? "bg-green-500" : "bg-gray-300"
+                  } rounded-full`}
+                ></div>
+              ))}
+            </div>
           </label>
-          
+
           <label className="relative">
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
               Confirm Password <sup className="text-pink-200">*</sup>
@@ -217,15 +232,17 @@ function SignupForm() {
         {/* Dynamically display password error if passwords don't match */}
         {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
 
+        {/* Submit button */}
         <button
-          type="submit"
-          className="mt-6 cursor-pointer rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-gray-900 hover:bg-yellow-400"
-          disabled={passwordError || passwordStrength === "Weak"}
-        >
-          Create Account
-        </button>
+  type="submit"
+  onClick={verifyEmail}
+  className={`mt-6 mr-20 cursor-pointer rounded-[8px] bg-yellow-50 py-[8px] px-[5px] font-medium text-gray-900 hover:bg-yellow-400 ${!isFormValid && "opacity-50 cursor-not-allowed"}`}
+  disabled={!isFormValid}
+>
+  Create Account
+</button>
+
       </form>
-      </NeonGradientCard>
     </div>
   )
 }

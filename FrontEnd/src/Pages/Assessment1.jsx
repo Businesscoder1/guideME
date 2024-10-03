@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import RadioButton from '../Components/Common/RadioButton';
 import Dropdown from '../Components/Common/Dropdown';
 import InputBox from '../Components/Common/InputBox';
+import Button from '../Components/core/HomePage/Button';
 const Assessment1 = () => {
   // State management for all fields
   const [cgpa, setCgpa] = useState(); // CGPA rating slider
@@ -44,12 +45,12 @@ const Assessment1 = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8 flex items-center justify-center">
-      <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-3xl">
-        <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">Assessment 1</h1>
-
+    <div className="min-h-screen bg-gray-900 p-8 flex items-center justify-center">
+      <div className="bg-gray-900  p-6 rounded-lg shadow-md w-full max-w-3xl">
+        <h1 className="text-2xl font-bold text-orange-500 mb-6 text-center">Unlock Your Future: Assess Your Skills & Interests</h1>
+        
         {/* CGPA Slider */}
-        <div className="mb-6">
+        <div className="mb-6 text-white">
         <InputBox
           label="CGPA"
           // type="number"
@@ -60,23 +61,26 @@ const Assessment1 = () => {
           min="0"
           max="10"
           
+          
+          
         />
         </div>
 
         {/* Course Status Radio Buttons */}
         <div className="mb-6">
-          <h2 className="text-lg font-semibold text-gray-700 mb-4">Course Status</h2>
+          <h2 className="text-lg font-semibold text-gray-200 mb-4">Course Status</h2>
           <RadioButton
             options={courseStatusOptions}
             name="course-status"
             selectedValue={courseStatus}
             onChange={setCourseStatus}
+            
           />
         </div>
 
         {/* Academic Achievements Radio Buttons */}
         <div className="mb-6">
-          <h2 className="text-lg font-semibold text-gray-700 mb-4">Academic Achievements</h2>
+          <h2 className="text-lg font-semibold text-gray-200 mb-4">Academic Achievements</h2>
           <RadioButton
             options={achievementOptions}
             name="academic-achievement"
@@ -87,7 +91,7 @@ const Assessment1 = () => {
 
         {/* Personal Interest Dropdown */}
         <div className="mb-6">
-          <h2 className="text-lg font-semibold text-gray-700 mb-4">Personal Interest</h2>
+          <h2 className="text-lg font-semibold text-gray-200 mb-4">Personal Interest</h2>
           <Dropdown
             options={personalInterestOptions}
             value={personalInterest}
@@ -97,7 +101,7 @@ const Assessment1 = () => {
 
         {/* Internship Experience Radio Buttons */}
         <div className="mb-6">
-          <h2 className="text-lg font-semibold text-gray-700 mb-4">Internship Experience</h2>
+          <h2 className="text-lg font-semibold text-gray-200 mb-4">Internship Experience</h2>
           <RadioButton
             options={yesNoOptions}
             name="internship"
@@ -108,18 +112,19 @@ const Assessment1 = () => {
 
         {/* Certificates Radio Buttons */}
         <div className="mb-6">
-          <h2 className="text-lg font-semibold text-gray-700 mb-4">Certificates</h2>
+          <h2 className="text-lg font-semibold text-gray-200 mb-4">Certificates</h2>
           <RadioButton
             options={yesNoOptions}
             name="certificates"
             selectedValue={certificates}
             onChange={setCertificates}
+            
           />
         </div>
 
         {/* Leadership Experience Radio Buttons */}
         <div>
-          <h2 className="text-lg font-semibold text-gray-700 mb-4">Leadership Experience</h2>
+          <h2 className="text-lg font-semibold text-gray-200 mb-4">Leadership Experience</h2>
           <RadioButton
             options={yesNoOptions}
             name="leadership"
@@ -127,6 +132,7 @@ const Assessment1 = () => {
             onChange={setLeadership}
           />
         </div>
+        <Button linkto="/assessment2" active={true} >Next</Button>
       </div>
     </div>
   );
