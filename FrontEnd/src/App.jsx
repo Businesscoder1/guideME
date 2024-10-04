@@ -23,7 +23,8 @@ import MyCourses from './Components/core/Dashboard/MyCourses';
 import EditCourse from './Components/core/Dashboard/EditCourse';
 import Contact from './Pages/Contact';
 import VerifyEmail from './Pages/VerifyEmail';
-
+import Sidebar from './Components/core/Dashboard/Sidebar';
+import DomainPage from './Components/Common/Domain';
 const App = () => {
     return (
       <div className="app">
@@ -49,8 +50,9 @@ const App = () => {
 
         </Routes>
         
-        {/* <Assessment1/> */}
-        <Dashboard/>
+        <Assessment1/>
+        {/* <DomainPage/> */}
+        {/* <Dashboard/> */}
 
         <Toaster
         position="top-right"

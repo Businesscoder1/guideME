@@ -2,8 +2,7 @@ import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-
-import { NeonGradientCard } from "../../../components/ui/neon-gradient-card";
+import {login} from "../../../services/operations/authAPI"
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -26,7 +25,8 @@ function LoginForm() {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    // dispatch(login(email, password, navigate))
+    dispatch(login(email, password, navigate))
+    
   };
 
   return (

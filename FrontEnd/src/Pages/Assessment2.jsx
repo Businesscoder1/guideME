@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Slider from '../Components/Common/Slider';
 import Button from '../Components/core/HomePage/Button';
+import TypingAnimation from '../components/ui/typing-animation';
 const Assessment2 = () => {
   const navigate = useNavigate();
   const skills = ['Communication Skills', 'Problem Solving', 'Teamwork', 'Time Management', 'Adaptability'];
@@ -10,7 +11,8 @@ const Assessment2 = () => {
 
   return (
     <div className="bg-gray-900 w-full font-serif p-10">
-      <h1 className="text-2xl text-center text-orange-500 font-mono mb-6">Know, Rate Yourself In Soft-Skills</h1>
+      
+      <TypingAnimation  className="text-2xl text-center text-orange-500 font-mono mb-6" text="Know, Rate Yourself In Soft-Skills"/>
 
       {skills.map((skill) => (
         <div key={skill} className="mb-6 ">

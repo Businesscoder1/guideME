@@ -43,11 +43,12 @@ function Navbar() {
 
   return (
     <div
-      className={`flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700 ${
-        location.pathname !== "/" ? "bg-richblack-800" : ""
+      className={`flex h-14 items-center bg-gray-600 justify-center border-b-[1px] border-b-richblack-700 ${
+        location.pathname !== "/" ? "bg-gray-800" : ""
       } transition-all duration-200`}
+      
     >
-      <div className="flex w-screen h-20 max-w-maxContent text-white font-extrabold bg-gray-900 items-center justify-between px-4">
+      <div className="flex w-screen h-20 max-w-maxContent text-white font-extrabold bg-gray-800 items-center justify-between px-4">
         <Link to="/" className="flex items-center">
           <img src={Logo} alt="Logo" className="w-10 h-12 rounded-full" loading="lazy" />
           <div className="mt-2 ml-3 text-2xl">Guide ME</div>
@@ -138,7 +139,7 @@ function Navbar() {
 
         {/* Mobile menu */}
         {isMobileMenuOpen && (
-          <div className="absolute top-20 left-0 w-full bg-richblack-800 p-4 md:hidden">
+          <div className="fixed inset-0 z-10  opacity-80 top-20 right-0 w-80 bg-black p-4 md:hidden">
             <ul className="flex flex-col gap-y-4">
               {NavbarLinks.map((link, index) => (
                 <li key={index}>

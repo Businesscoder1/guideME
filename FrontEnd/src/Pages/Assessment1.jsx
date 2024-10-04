@@ -3,6 +3,8 @@ import RadioButton from '../Components/Common/RadioButton';
 import Dropdown from '../Components/Common/Dropdown';
 import InputBox from '../Components/Common/InputBox';
 import Button from '../Components/core/HomePage/Button';
+import TypingAnimation from '../components/ui/typing-animation';
+
 const Assessment1 = () => {
   // State management for all fields
   const [cgpa, setCgpa] = useState(); // CGPA rating slider
@@ -47,7 +49,8 @@ const Assessment1 = () => {
   return (
     <div className="min-h-screen bg-gray-900 p-8 flex items-center justify-center">
       <div className="bg-gray-900  p-6 rounded-lg shadow-md w-full max-w-3xl">
-        <h1 className="text-2xl font-bold text-orange-500 mb-6 text-center">Unlock Your Future: Assess Your Skills & Interests</h1>
+        
+        <TypingAnimation className="text-2xl font-bold text-orange-500 mb-6 text-center" text="Unlock Your Future: Assess Your Skills & Interests"/>
         
         {/* CGPA Slider */}
         <div className="mb-6 text-white">
@@ -132,7 +135,7 @@ const Assessment1 = () => {
             onChange={setLeadership}
           />
         </div>
-        <Button linkto="/assessment2" active={true} >Next</Button>
+        <Button linkto="/assessment2" active={true}  >Next</Button>
       </div>
     </div>
   );

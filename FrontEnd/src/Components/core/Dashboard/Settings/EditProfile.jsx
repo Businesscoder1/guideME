@@ -28,7 +28,7 @@ export default function EditProfile() {
     }
   }
   return (
-    <div className="bg-gray-900 text-white">
+    <div className="bg-gray-900 p-8 text-white">
       <form onSubmit={handleSubmit(submitProfileForm)}>
         {/* Profile Information */}
         <div className="my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
@@ -45,7 +45,7 @@ export default function EditProfile() {
                 name="firstName"
                 id="firstName"
                 placeholder="Enter first name"
-                className="form-style"
+                className="form-style h-10 rounded-md p-4 text-black"
                 {...register("firstName", { required: true })}
                 defaultValue={user?.firstName}
               />
@@ -64,7 +64,7 @@ export default function EditProfile() {
                 name="lastName"
                 id="lastName"
                 placeholder="Enter first name"
-                className="form-style"
+                className="form-style h-10 rounded-md p-4 text-black"
                 {...register("lastName", { required: true })}
                 defaultValue={user?.lastName}
               />
@@ -85,7 +85,7 @@ export default function EditProfile() {
                 type="date"
                 name="dateOfBirth"
                 id="dateOfBirth"
-                className="form-style"
+                className="form-style h-10 rounded-md p-4 text-black"
                 {...register("dateOfBirth", {
                   required: {
                     value: true,
@@ -112,7 +112,7 @@ export default function EditProfile() {
                 type="text"
                 name="gender"
                 id="gender"
-                className="form-style"
+                className="form-style h-10 rounded-md p-4 text-black"
                 {...register("gender", { required: true })}
                 defaultValue={user?.additionalDetails?.gender}
               >
@@ -142,7 +142,7 @@ export default function EditProfile() {
                 name="contactNumber"
                 id="contactNumber"
                 placeholder="Enter Contact Number"
-                className="form-style"
+                className="form-style h-10 rounded-md p-4 text-black"
                 {...register("contactNumber", {
                   required: {
                     value: true,
@@ -168,7 +168,7 @@ export default function EditProfile() {
                 name="about"
                 id="about"
                 placeholder="Enter Bio Details"
-                className="form-style"
+                className="form-style h-10 rounded-md p-4 text-black"
                 {...register("about", { required: true })}
                 defaultValue={user?.additionalDetails?.about}
               />

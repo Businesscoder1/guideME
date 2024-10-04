@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Slider from '../Components/Common/Slider';
 import Button from '../Components/core/HomePage/Button';
+import TypingAnimation from '../components/ui/typing-animation';
+
 const Assessment3 = () => {
   const [ratings, setRatings] = useState({
     Python: 0,
@@ -25,9 +27,8 @@ const Assessment3 = () => {
 
   return (
     <div className="font-serif pt-20 bg-gray-900 p-10">
-      <h1 className="text-2xl text-center text-orange-500 font-serif mb-6">
-        Evaluate Your Proficiency in Programming and Technical Skills
-      </h1>
+      
+      <TypingAnimation className="text-2xl text-center text-orange-500 font-serif mb-6" text="Evaluate Your Proficiency in Programming and Technical Skills" />
 
       {Object.keys(ratings).map((skill) => (
         <div key={skill} className="mb-6">

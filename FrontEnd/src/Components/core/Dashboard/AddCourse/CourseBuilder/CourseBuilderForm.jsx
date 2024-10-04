@@ -5,10 +5,10 @@ import { IoAddCircleOutline } from "react-icons/io5"
 import { MdNavigateNext } from "react-icons/md"
 import { useDispatch, useSelector } from "react-redux"
 
-// import {
-//   createSection,
-//   updateSection,
-// } from "../../../../../services/operations/courseDetailsAPI"
+import {
+  createSection,
+  updateSection,
+} from "../../../../../services/operations/courseDetailsAPI"
 import {
   setCourse,
   setEditCourse,
@@ -34,32 +34,32 @@ export default function CourseBuilderForm() {
 
   // handle form submission
   const onSubmit = async (data) => {
-    // console.log(data)
+    console.log(data)
     setLoading(true)
 
     let result
 
-    // if (editSectionName) {
-    //   result = await updateSection(
-    //     {
-    //       sectionName: data.sectionName,
-    //       sectionId: editSectionName,
-    //       courseId: course._id,
-    //     },
-    //     token
-    //   )
-    //   // console.log("edit", result)
-    // } else {
-    //   result = await createSection(
-    //     {
-    //       sectionName: data.sectionName,
-    //       courseId: course._id,
-    //     },
-    //     token
-    //   )
-    // }
+    if (editSectionName) {
+      result = await updateSection(
+        {
+          sectionName: data.sectionName,
+          sectionId: editSectionName,
+          courseId: course._id,
+        },
+        token
+      )
+      console.log("edit", result)
+    } else {
+      result = await createSection(
+        {
+          sectionName: data.sectionName,
+          courseId: course._id,
+        },
+        token
+      )
+    }
     if (result) {
-      // console.log("section result", result)
+      console.log("section result", result)
       dispatch(setCourse(result))
       setEditSectionName(null)
       setValue("sectionName", "")

@@ -32,12 +32,12 @@ export default function UpdatePassword() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(submitPasswordForm)}>
-        <div className="my-10 text-white flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-gray-900 p-8 px-12">
+      <form onSubmit={handleSubmit(submitPasswordForm)} className="p-8">
+        <div className="my-10  text-white flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-gray-900 p-8">
           <h2 className="text-lg font-semibold text-richblack-5">Password</h2>
           
           {/* Password Fields */}
-          <div className="flex flex-col gap-5 lg:flex-row">
+          <div className="flex text-white flex-col gap-5 lg:flex-row">
             
             {/* Old Password */}
             <div className="relative flex flex-col gap-2 lg:w-[48%]">
@@ -46,7 +46,7 @@ export default function UpdatePassword() {
                 type={showOldPassword ? "text" : "password"}
                 placeholder="Enter Current Password"
                 value=""
-                inputStyle="text-black"  // Ensure the password text is black
+                inputStyle="text-white"  // Ensure the password text is black
                 onChange={(value) => {
                   register("oldPassword").onChange({ target: { value } });
                 }}
